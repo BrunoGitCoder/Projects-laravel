@@ -23,9 +23,9 @@ Route::middleware('auth')->group(function() {
         return redirect()->route('projects.index');
     });
     
-    //Projects
+    //Projects CRUD
     Route::resource('projects', ProjectController::class);
 
-    //Tasks
+    //Tasks CRUD
     Route::resource('tasks', TaskController::class);
 });
