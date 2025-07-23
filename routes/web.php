@@ -1,20 +1,20 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 //Login
-Route::get('/login', [UserController::class,'showLogin'])->name('login');
-Route::post('/login', [UserController::class,'login']);
+Route::get('/login', [AuthController::class,'showLogin'])->name('login');
+Route::post('/login', [AuthController::class,'login']);
 
 //Register
-Route::get('/register', [UserController::class,'showRegister'])->name('register');
-Route::post('/register', [UserController::class,'register']);
+Route::get('/register', [AuthController::class,'showRegister'])->name('register');
+Route::post('/register', [AuthController::class,'register']);
 
 //Logout
-Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Protected routes
 Route::middleware('auth')->group(function() {
