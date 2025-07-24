@@ -18,6 +18,12 @@
             <i>Descrição</i>
             <textarea name="description">{{ old('description', $project->description) }}</textarea>
         </div>
-        <button type="submit">Criar</button>
+        <div>
+            <button type="submit">Criar</button>
+            <a href="{{ route('projects.index') }}">
+                <button type="button">Voltar</button>
+            </a>
+        </div>
     </form>
+
 @endsection

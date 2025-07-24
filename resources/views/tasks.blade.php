@@ -13,27 +13,32 @@
                 <th>Título</th>
                 <th>Status</th>
                 <th>Prioridade</th>
-                <th>Ações</th>
+                <th>Prazo</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($tasks as $task)
-                <tr>
+                <tr title="{{ $task->description }}">
                     <td>{{ $task->title }}</td>
                     <td>{{ $task->status }}</td>
                     <td>{{ $task->priority }}</td>
+                    <td>{{ \Carbon\Carbon::parse($task->due_date)->format('d/m/Y') }}</td>
                     <td>
-                        <a href="{{ route('tasks.edit', [$project->id, $task->id]) }}">Editar</a>
-                        <form action="{{ route('tasks.destroy', [$project->id, $task->id]) }}" method="POST" style="display:inline" onsubmit="return confirm('Deletar esta tarefa?')">
+                        <a href="{{ route('tasks.edit', [$project->id, $task->id]) }}"><button type="button">Edit</button></a>
+                        <form action="{{ route('tasks.destroy', [$project->id, $task->id]) }}" method="POST" style="display:inline" onsubmit="return confirm('Deletar a tarefa [{{ $task->title }}]?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Excluir</button>
+                            <button type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">Nenhuma tarefa encontrada.</td>
+                    <td colspan="4">Crie uma
+                        <a href="{{ route('tasks.create', $project->id) }}">
+                        <button type="button">Nova Tarefa</button>
+                    </a>
+                </td>
                 </tr>
             @endforelse
         </tbody>

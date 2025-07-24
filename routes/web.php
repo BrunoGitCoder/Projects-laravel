@@ -5,12 +5,6 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
-/*
-PRG (Post/Redirect/Get)
-    GET → view()
-    POST → redirect()
-*/
-
 
 //Login
 Route::get('/login', [AuthController::class,'showLogin'])->name('login');
@@ -31,9 +25,8 @@ Route::middleware('auth')->group(function() {
     });
     
     //Projects CRUD
-    Route::resource('projects', ProjectController::class);
+    Route::resource('projects', ProjectController::class)->except('show');
 
     //Tasks CRUD
-    Route::resource('tasks', TaskController::class);
-    Route::get('/projects/{project}/tasks', [TaskController::class, 'index'])->name('tasks.index');
+    Route::resource('/projects/{project}/tasks', TaskController::class)->except('show');
 });
