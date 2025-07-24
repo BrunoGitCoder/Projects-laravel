@@ -26,5 +26,4 @@
 <p>
     Não tem uma conta? <a href="{{ route('register') }}">Crie uma conta agora!</a>
 </p>
-
 @endsection

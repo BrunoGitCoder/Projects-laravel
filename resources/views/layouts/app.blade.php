@@ -8,8 +8,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <aside>
-        @auth
+    @auth
+        <aside>
             <ul>
                 <li><a href="{{ route('projects.index') }}">Projetos</a></li>
             </ul>
@@ -18,12 +18,8 @@
                 @csrf
                 <button type="submit">Sair</button>
             </form>
-        @elseif (request()->path() === 'login')
-            <a href="{{ route('register') }}">Registrar</a>
-        @elseif (request()->path() === 'register')
-            <a href="{{ route('login') }}">Entrar</a>
-        @endauth
-    </aside>
+        </aside>
+    @endauth
     <main>
         @auth
             <h1>@yield('name-section', 'DefinirNome')</h1> 

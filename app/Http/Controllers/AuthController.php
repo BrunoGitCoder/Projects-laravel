@@ -8,19 +8,25 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
     //Login
     public function showLogin() {
         if (Auth::check()){
-            return redirect()->intended('/');
+            return redirect('/');
         } else {
             return view('login');
         }
     }
 
     public function login(Request $request) {
+        if (Auth::check()) {
+            Log::info('passei aqui');
+            return redirect('/');
+        }
+
         $credentials = $request->validate([
             'email'     => 'required|email',
             'password'  => 'required'
@@ -45,7 +51,7 @@ class AuthController extends Controller
     //Register
     public function showRegister() {
         if (Auth::check()){
-            return redirect()->intended('/');
+            return redirect('/');
         } else {
             return view('register');
         }
