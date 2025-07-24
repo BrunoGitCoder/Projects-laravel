@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project</title>
-    <link href="{{ asset('css/app.css') }} rel="stylesheet" ">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title', 'Project')</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    <aside>
+        @auth
+            <ul>
+                <li><a href="{{ route('projects.index') }}">Projetos</a></li>
+            </ul>
+            <img src="" alt="user-image">
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit">Sair</button>
+            </form>
+        @elseif (request()->path() === 'login')
+            <a href="{{ route('register') }}">Registrar</a>
+        @elseif (request()->path() === 'register')
+            <a href="{{ route('login') }}">Entrar</a>
+        @endauth
+    </aside>
+    <main>
+        @auth
+            <h1>@yield('name-section', 'DefinirNome')</h1> 
+        @endauth
+
+        @yield('content')
+    </main>
 </body>
 </html>
