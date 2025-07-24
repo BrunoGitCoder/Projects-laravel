@@ -20,7 +20,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('welcome');
+        return view('create_projects');
     }
 
     /**
@@ -28,6 +28,19 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'name'          => ['required', 'string', 'min:3'],
+            'description'   => ['nullable', 'string']
+        ], [
+            'name.required' => 'Nome Obrigatório.',
+            'name.min'      => 'Nome mínimo :min letras.'
+        ]);
+
+        $data['user_id'] = Auth::id();
+
+        Project::create($data);
+
+        return redirect('/projects')->with('success', 'Projeto criado com sucesso');
     }
 
     /**
@@ -43,7 +56,8 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $project = Project::find($id);
+        return view('edit_projects', compact('project'));
     }
 
     /**
@@ -51,7 +65,20 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'name'          => ['required', 'string', 'min:3'],
+            'description'   => ['nullable', 'string']
+        ], [
+            'name.required' => 'Nome Obrigatório.',
+            'name.min'      => 'Nome mínimo :min letras.'
+        ]);
+
+        $data['user_id'] = Auth::id();
+
+        $project = Project::find($id);
+        $project->update($data);
+
+        return redirect('/projects')->with('success', 'Projeto editado com sucesso.');
     }
 
     /**
