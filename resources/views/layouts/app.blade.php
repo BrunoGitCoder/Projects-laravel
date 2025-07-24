@@ -22,7 +22,7 @@
     @endauth
     <main>
         @auth
-            <h1>@yield('name-section', 'DefinirNome')</h1> 
+            <h1>@yield('name_section', 'DefinirNome')</h1> 
         @endauth
 
         @yield('content')

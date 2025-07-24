@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Edit Registro')
+@section('name_section', 'Editar Projeto - ' . $project->name)
 
 @section('content')
-<h1>editar reg</h1>
+<p>Descrição: {{ $project->description }}</p>
  <form action="{{ route('projects.update', $project->id) }}" method="POST">
         @csrf
         @method('PUT')

@@ -1,26 +1,35 @@
 @extends('layouts.app')
 @section('title', 'Projetos')
 
+@section('name_section', 'Projetos')
+
 @section('content')
     <form action="{{ route('projects.create') }}" method="GET">@csrf<button type="submit">Criar Projeto</button></form>
-    @if ($projects->count())
-        <table>
+    <table>
+        <tr>
+            <th>Nome</th>
+        </tr>
+        @forelse ($projects as $project)
             <tr>
-                <th>Nome</th>
+                <td><a href="{{ route('tasks.index', $project->id) }}"><div style="background: red; width: 150px">{{ $project->name }}</div></a></td>
+                <td><form action="{{ route('projects.edit', $project->id) }}" method="GET">@csrf<button type="submit">Edit</button></form></td>
+                <td><form action="{{ route('projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar o projeto [{{ $project->name }}]?');">@csrf @method('DELETE')<button type="submit">Delete</button></form></td>
             </tr>
-            @foreach ($projects as $project)
-                <tr>
-                    <td>{{ $project->name }}</td>
-                    <td><form action="{{ route('projects.edit', $project->id) }}" method="GET"><button type="submit">Edit</button></form></td>
-                    <td><button>Delete</button></td>
-                </tr>
-            @endforeach
-        </table>
-    @else
-        <div>
-            <i>Comece agora e</i><form action="{{ route('projects.create') }}" method="GET">@csrf<button type="submit">Crie</button></form><i>umNovo projeto!</i>
-        </div>
-    @endif
+        @empty
+            <tr>
+                <td>
+                    <div>
+                        <i>Comece agora e</i>
+                        <form action="{{ route('projects.create') }}" method="GET">
+                            @csrf
+                            <button type="submit">Crie</button>
+                        </form>
+                        <i>umNovo projeto!</i>
+                    </div>
+                </td>
+            </tr>
+        @endforelse
+    </table>
 
     @if (session('success'))
         <div style="color: green;">

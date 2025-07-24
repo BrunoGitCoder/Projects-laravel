@@ -35,4 +35,5 @@ Route::middleware('auth')->group(function() {
 
     //Tasks CRUD
     Route::resource('tasks', TaskController::class);
+    Route::get('/projects/{project}/tasks', [TaskController::class, 'index'])->name('tasks.index');
 });

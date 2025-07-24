@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($projectId)
     {
-        //
+        $project = Project::where('user_id', Auth::id())->where('id', $projectId)->firstOrFail();
+        $tasks = Task::where('project_id', $project->id)->get();
+
+        return view('tasks', compact(['tasks', 'project']));
     }
 
     /**
