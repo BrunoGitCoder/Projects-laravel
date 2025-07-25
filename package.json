@@ -5,7 +5,8 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "start": "concurrently \"php artisan serve\" \"npm run dev\""
+        "start": "concurrently \"php artisan serve\" \"npm run dev\"",
+        "start-project": "composer install && npm install && copy .env.example .env && php artisan key:generate && php artisan migrate && php artisan db:seed --class=ProjectSeeder && npm run start"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
