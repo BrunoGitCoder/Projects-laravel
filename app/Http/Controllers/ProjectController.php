@@ -11,7 +11,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::where('user_id', Auth::id())->get();
+        $projects = Project::where('user_id', Auth::id())->orderBy('id')->get();
         return view('projects', compact('projects'));
     }
 

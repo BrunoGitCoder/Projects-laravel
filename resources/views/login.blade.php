@@ -11,7 +11,7 @@
     @csrf
     <h2>Entrar</h2>
     <div>
-        <span class="fa-regular fa-user"></span>
+        <span class="fa-regular fa-envelope"></span>
         <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="" required>
         <i>E-mail</i>
     </div>
@@ -29,6 +29,6 @@
 </form>
 
 <p>
-    Não tem uma conta? <a href="{{ route('register') }}">Crie uma conta agora</a>!
+    Não tem uma conta? <a href="{{ route('register') }}">Crie uma conta agora</a>   
 </p>
 @endsection

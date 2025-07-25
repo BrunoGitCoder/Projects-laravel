@@ -42,6 +42,6 @@
     </div>
 </form>
 <p>
-    Já tem conta? <a href="{{ route('login') }}">Entrar</a>
+    Já tem uma conta? <a href="{{ route('login') }}">Entrar</a>
 </p>
 @endsection

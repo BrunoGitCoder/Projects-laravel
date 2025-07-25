@@ -9,7 +9,7 @@
             <form action="{{ route('projects.create') }}" method="GET">@csrf<button class="btn-pri" style="margin: 0;" type="submit">Novo Projeto</button></form>            
         @endif
     </div>
-    <table>
+    <table class="table-project">
         @if ($projects->count())
         <thead>
             <tr>

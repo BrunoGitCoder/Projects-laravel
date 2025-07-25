@@ -16,7 +16,7 @@ class TaskController extends Controller
     public function index($projectId)
     {
         $project = Project::where('user_id', Auth::id())->where('id', $projectId)->firstOrFail();
-        $tasks = Task::where('project_id', $project->id)->get();
+        $tasks = Task::where('project_id', $project->id)->orderBy('due_date', 'asc')->get();
 
         return view('tasks', compact(['tasks', 'project']));
     }
