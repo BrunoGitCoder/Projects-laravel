@@ -3,58 +3,64 @@
 @section('name_section', 'Nova tarefa')
 
 @section('content')
-    <form action="{{ route('tasks.store', $project->id) }}" method="POST">
+    <form class="form-pri" action="{{ route('tasks.store', $project->id) }}" method="POST">
     @csrf
-
+    <h2 style="margin-bottom: 0">Nova Tarefa</h2>
     <div>
-        <label for="title">Título</label>
-        <input type="text" name="title" value="{{ old('title') }}" required>
+        <span class="fa-regular fa-newspaper"></span>
+        <input type="text" name="title" value="{{ old('title') }}" placeholder="" required>
+        <i for="title">Título</i>
         @error('title')
-            <div style="color:red;">{{ $message }}</div>
+            <span class='error-msg'>{{ $message }}</span>
         @enderror
     </div>
 
-    <div>
-        <label for="description">Descrição</label>
-        <textarea name="description">{{ old('description') }}</textarea>
+    <div style="display: flex; flex-direction: column; padding-top: 20px">
+        <span for="description">Descrição</span>
+        <textarea name="description" rows="5">{{ old('description') }}</textarea>
         @error('description')
-            <div style="color:red;">{{ $message }}</div>
+            <span class='error-msg'>{{ $message }}</span>
         @enderror
     </div>
 
-    <div>
-        <label for="status">Status</label>
+    <div style="display: flex; justify-content: space-between; margin-top:10px;">
+        <span for="status">Status</span>
         <select name="status" required>
             <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pendente</option>
             <option value="in_progress" {{ old('status') == 'in_progress' ? 'selected' : '' }}>Em andamento</option>
             <option value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>Concluída</option>
         </select>
         @error('status')
-            <div style="color:red;">{{ $message }}</div>
+            <span class='error-msg'>{{ $message }}</span>
         @enderror
     </div>
 
-    <div>
-        <label for="priority">Prioridade</label>
+    <div style="display: flex; justify-content: space-between; margin-top:10px;">
+        <span for="priority">Prioridade</span>
         <select name="priority" required>
             <option value="low" {{ old('priority') == 'low' ? 'selected' : '' }}>Baixa</option>
             <option value="medium" {{ old('priority') == 'medium' ? 'selected' : '' }}>Média</option>
             <option value="high" {{ old('priority') == 'high' ? 'selected' : '' }}>Alta</option>
         </select>
         @error('priority')
-            <div style="color:red;">{{ $message }}</div>
+            <span class='error-msg'>{{ $message }}</span>
         @enderror
     </div>
 
-    <div>
-        <label for="due_date">Data de entrega</label>
-        <input type="date" name="due_date" value="{{ old('due_date') }}">
+    <div style="display: flex; flex-direction: column; margin-top: 10px; align-items: center">
+        <span for="due_date">Data de entrega</span>
+        <input style="margin-top: 0" type="date" name="due_date" value="{{ old('due_date') }}">
         @error('due_date')
-            <div style="color:red;">{{ $message }}</div>
+            <span style="text-align: center; width: 100%; left: 0" class='error-msg'>{{ $message }}</span>
         @enderror
     </div>
+     <div class='flex-center' style="gap: 10px">
+        <button class="btn-line-pri" type="submit">Criar</button>
+        <a href="{{ route('tasks.index', $project->id) }}">
+                <button class="btn-line-pri red" type="button">Cancelar</button>
+            </a>  
+    </div>
 
-    <button type="submit">Criar Tarefa</button>
 </form>
 
 @endsection

@@ -23,6 +23,8 @@
     --color-gray-light: #969696;
     --color-shadow: #00000026;
     --color-red: #e71046;
+    --color-yellow: #e9c31a;
+    --color-green: #39b82e;
 
     --fonte-pri: 'Arial', sans-serif;
 }
@@ -83,6 +85,17 @@ main {
 
 
 /*form*/
+select,
+input[type="date"] {
+    background-color: var(--color-white-100);
+    border-radius: 50px;
+    padding: 0 10px;
+}
+
+option:focus {
+    background-color: var(--color-pri);
+}
+
 .form-pri {
     background-color: var(--color-white);
     padding: 20px 30px 30px 30px;
@@ -109,6 +122,19 @@ main {
     font-size: .8rem;
     color: var(--color-red);
 }
+
+textarea {
+    border: 2px solid var(--color-white-100);
+    border-radius: 10px;
+    padding: 5px;
+    overflow-y: auto;
+    resize: none;
+}
+
+textarea:focus {
+    border: 2px solid var(--color-pri);
+}
+
 /*Button*/
 
 .btn-pri {
@@ -170,6 +196,15 @@ main {
     background-color: var(--color-red);
 }
 
+.btb-log {
+    background-color: var(--color-white);
+    color: var(--color-pri);
+    font-size: .8rem;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
 /*--*/
 
 .flex-center {
@@ -196,7 +231,9 @@ aside {
     min-width: 80px;
     transition: .2s ease-in-out;
     container-type: inline-size;
-    overflow-x: hidden;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
 }
 
 aside:hover {
@@ -256,15 +293,12 @@ th {
     font-size: 1.2rem;
 }
 
-tr {
+tr:not(:last-child),
+thead {
     border-bottom: 1px solid var(--color-white-100);
 }
 
-tr:last-child {
-    border-bottom: none;
-}
-
-tr:hover:not(tr:first-child) {
+tbody > tr:hover{
     background-color: var(--color-white-100);
 }
 
@@ -300,7 +334,55 @@ table * a {
     padding-right: 100px;
 }
 
-.table-title > h2 {
+.table-title h2 {
     font-size: 2rem;
     font-weight: bolder;
+}
+
+.new-td {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.new-td:hover {
+    background-color: var(--color-white);
+}
+
+.task-table td:not(:first-child),
+.task-table th:not(:first-child) {
+    text-align: center;
+}
+
+.task-table td:nth-child(2),
+.task-table th:nth-child(2) {
+    min-width: 150px;
+}
+
+
+/*label*/
+
+.label {
+    background-color: var(--color-gray);
+    color: var(--color-white);
+    border-radius: 5px;
+    padding: 2px 4px;
+    font-weight: bold;
+    width: fit-content;
+    margin: auto;
+    font-size: .8rem;
+}
+
+.completed,
+.low {
+    background-color: var(--color-green);
+}
+
+.in_progress,
+.medium {
+    background-color: var(--color-yellow);
+}
+
+.pending,
+.high {
+    background-color: var(--color-red);
 }

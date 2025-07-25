@@ -1,28 +1,31 @@
 @extends('layouts.app')
 @section('title', 'Edit Registro')
-@section('name_section', 'Editar Projeto - ' . $project->name)
 
 @section('content')
-<p>Descrição: {{ $project->description }}</p>
- <form action="{{ route('projects.update', $project->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+<form class="form-pri" action="{{ route('projects.update', $project->id) }}" method="POST">
+    @csrf
+    @method('PUT')
+    <div class="flex-center" style="flex-direction: column;">
+        <h2 style="font-size: 1.4rem; font-weight: bold;">Editar</h2>
+        <h3 style="color: #969696;">{{ $project->name }}</h3>   
+    </div>
         <div>
+            <span class="fa-regular fa-newspaper"></span>
+            <input type="text" name="name" value="{{ old('name', $project->name) }}" placeholder="" required>
             <i>Nome</i>
-            <input type="text" name="name" value="{{ old('name', $project->name) }}" required>
             @error('name')
-                <p>{{ $message }}</p>
+                <span class='error-msg'>{{ $message }}</span>
             @enderror
         </div>
-        <div>
-            <i>Descrição</i>
-            <textarea name="description">{{ old('description', $project->description) }}</textarea>
+        <div style="display: flex; flex-direction: column; padding-top: 20px">
+            <span>Descrição</span>
+            <textarea name="description" rows="5">{{ old('description', $project->description) }}</textarea>
         </div>
-        <div>
-            <button type="submit">Criar</button>
+        <div class='flex-center' style="gap: 10px">
+            <button class="btn-line-pri" type="submit">Salvar</button>
             <a href="{{ route('projects.index') }}">
-                <button type="button">Voltar</button>
-            </a>
+                <button class="btn-line-pri red" type="button">Cancelar</button>
+            </a>    
         </div>
     </form>
 

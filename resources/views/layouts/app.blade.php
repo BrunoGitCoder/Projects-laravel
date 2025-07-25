@@ -20,10 +20,10 @@
             </div>
             <div>
                 <img id="user-icon" src="{{ asset('images/user_icon.png') }}" alt="Logo">
-                <p class="flex-center">{{ Auth::user()->name }}</p>
+                <p style="color: white; font-weight: 700" class="flex-center">{{ Auth::user()->name }}</p>
                 <form class="hiden flex-center" action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit">Sair</button>
+                    <button class="btb-log" type="submit">Logout</button>
                 </form>
             </div>
         </aside>

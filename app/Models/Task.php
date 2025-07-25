@@ -21,4 +21,20 @@ class Task extends Model
     public function projects(){
         $this->belongsTo(Project::class);
     }
+
+     public function getStatusNameAttribute() {
+        return match($this->status) {
+            'pending' => 'Pendente',
+            'in_progress' => 'Em andamento',
+            'completed' => 'Concluída'
+        };
+    }
+
+    public function getPriorityNameAttribute() {
+        return match($this->priority) {
+            'low' => 'Baixa',
+            'medium' => 'Média',
+            'high' => 'Alta'
+        };
+    }
 }
