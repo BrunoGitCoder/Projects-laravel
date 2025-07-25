@@ -9,3 +9,271 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/*Root*/
+:root {
+    --color-pri: #316ae1;
+    --color-pri-200: #2854b4;
+    --color-sec: #a7bbe7;
+    --color-backg: #f8f8f8;
+    --color-white: #fff;
+    --color-white-100: #eaeaea;
+    --color-black: #000;
+    --color-gray: #585858;
+    --color-gray-light: #969696;
+    --color-shadow: #00000026;
+    --color-red: #e71046;
+
+    --fonte-pri: 'Arial', sans-serif;
+}
+
+/*General*/
+* , *:focus{
+    font-family: var(--fonte-pri);
+    font-style: normal;
+    outline: none;
+}
+
+input {
+    border-bottom: 2px solid var(--color-gray-light);
+    margin-top: 30px;
+}
+
+input:focus {
+    border-bottom: 2px solid var(--color-pri);
+}
+
+input:focus + i, input:not(:placeholder-shown) + i {
+    color: var(--color-pri);
+    font-size: .8rem;
+    bottom: 1.3rem;
+}
+
+a {
+    color: var(--color-pri);
+}
+
+i {
+    color: var(--color-gray);
+    pointer-events: none;
+    user-select: none;
+    position: absolute;
+    left: 25px;
+    bottom: 0;
+    transition: .1s;
+}
+
+button {
+    cursor: pointer;
+}
+
+body {
+    background-color: var(--color-backg);
+}
+/*App*/
+main {
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-backg);
+}
+
+
+/*form*/
+.form-pri {
+    background-color: var(--color-white);
+    padding: 20px 30px 30px 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--color-shadow);
+    margin-bottom: 50px;
+}
+
+.form-pri > div {
+    position: relative;
+    width: 100%;
+}
+
+.form-pri > h2 {
+    margin: 15px 0 15px 0;
+    padding-left: 25px;
+    font-size: 1.5rem;
+}
+
+.error-msg {
+    position: absolute;
+    left: 25px;
+    bottom: -1.1rem;
+    font-size: .8rem;
+    color: var(--color-red);
+}
+/*Button*/
+
+.btn-pri {
+    background-color: var(--color-pri);
+    color: var(--color-white);
+    padding: 10px 30px;
+    border-radius: 5px;
+    margin-top: 30px;
+    transition: .2s;
+}
+.btn-pri:hover {
+    background-color: var(--color-pri-200);
+}
+
+.btn-line-pri {
+    background-color: var(--color-white);
+    color: var(--color-pri);
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 2px solid var(--color-pri);
+    margin-top: 30px;
+    transition: .2s;
+}
+.btn-line-pri:hover {
+    background-color: var(--color-pri);
+    color: var(--color-white);
+}
+
+.btn-menu {
+    background-color: var(--color-pri);
+    color: var(--color-white);
+    width: 200px;
+    padding: 10px 0;
+    border-radius: 5px;
+    border: 2px solid var(--color-white);
+}
+.btn-menu:hover {
+    background-color: var(--color-white);
+    color: var(--color-pri);
+}
+
+.btn-edit {
+    color: var(--color-pri);
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 2px solid var(--color-pri);
+    transition: .2s;
+}
+.btn-edit:hover {
+    background-color: var(--color-pri);
+    color: var(--color-white);
+}
+
+.red {
+    color: var(--color-red);
+    border: 2px solid var(--color-red);
+}
+.red:hover {
+    background-color: var(--color-red);
+}
+
+/*--*/
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*aside*/
+
+.app-body{
+    display: flex;
+    flex-direction: row;
+
+}
+
+aside {
+    background-color: var(--color-pri);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    min-width: 80px;
+    transition: .2s ease-in-out;
+    container-type: inline-size;
+    overflow-x: hidden;
+}
+
+aside:hover {
+    width: 300px;
+}
+
+aside > div:nth-child(2) {
+    height: 100%;
+}
+aside > div:nth-child(3) {
+    margin-bottom: 15px;
+}
+
+#user-icon {
+    padding: 10px;
+    width: 80px;
+    transition: .2s ease-in-out;
+}
+
+aside:hover #user-icon {
+    width: 100px;
+}
+
+.hiden-box {
+    container-type: inline-size;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    padding: 0 25px;
+}
+
+@container (max-width: 100px) {
+    .hiden {
+        visibility: hidden;
+    }
+}
+
+/*table*/
+.table-div {
+    width: 100%;
+    height: 100%;
+    padding: 150px 80px;
+}
+
+table {
+    width: 100%;
+    background-color: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--color-shadow);
+    margin: 30px 0;
+}
+
+th {
+    text-align: left;
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+tr {
+    border-bottom: 1px solid var(--color-white-100);
+}
+
+tr:last-child {
+    border-bottom: none;
+}
+
+tr:hover:not(tr:first-child) {
+    background-color: var(--color-white-100);
+}
+
+td {
+    padding: 0 10px;
+    width: 100%;
+    height: 50px;
+}
+
+table * a {
+    color: var(--color-black);
+}

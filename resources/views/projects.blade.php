@@ -1,30 +1,47 @@
 @extends('layouts.app')
 @section('title', 'Projetos')
 
-@section('name_section', 'Projetos')
-
 @section('content')
-    <form action="{{ route('projects.create') }}" method="GET">@csrf<button type="submit">Criar Projeto</button></form>
+<div class="table-div">
+    <div>
+        <h2>Projetos</h2>
+        @if ($projects->count())
+            <form action="{{ route('projects.create') }}" method="GET">@csrf<button type="submit">Criar Projeto</button></form>            
+        @endif
+    </div>
     <table>
         <tr>
             <th>Nome</th>
         </tr>
         @forelse ($projects as $project)
             <tr>
-                <td><a href="{{ route('tasks.index', $project->id) }}"><div style="background: red; width: 150px">{{ $project->name }}</div></a></td>
-                <td><form action="{{ route('projects.edit', $project->id) }}" method="GET">@csrf<button type="submit">Edit</button></form></td>
-                <td><form action="{{ route('projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar o projeto [{{ $project->name }}]?');">@csrf @method('DELETE')<button type="submit">Delete</button></form></td>
+                <td>
+                    <a href="{{ route('tasks.index', $project->id) }}">
+                        <div title="{{ $project->description }}">{{ $project->name }}</div>
+                    </a>
+                </td>
+                <td>
+                    <form action="{{ route('projects.edit', $project->id) }}" method="GET">
+                        @csrf
+                        <button class="btn-edit" type="submit">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{{ route('projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar o projeto [{{ $project->name }}]?');">@csrf @method('DELETE')
+                        <button class="btn-edit red" type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         @empty
             <tr>
                 <td>
-                    <div>
-                        <i>Comece agora e</i>
+                    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
+                        <span>Comece agora e</span>
                         <form action="{{ route('projects.create') }}" method="GET">
                             @csrf
-                            <button type="submit">Crie</button>
+                            <button style="margin: 0 10px" class="btn-pri" type="submit">Crie</button>
                         </form>
-                        <i>umNovo projeto!</i>
+                        <span>um novo projeto!</span>
                     </div>
                 </td>
             </tr>
@@ -36,5 +53,5 @@
             {{ session('success') }}
         </div>
     @endif
-
+</div>
 @endsection
