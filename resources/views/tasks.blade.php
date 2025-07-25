@@ -24,7 +24,9 @@
                     <td>{{ $task->priority }}</td>
                     <td>{{ \Carbon\Carbon::parse($task->due_date)->format('d/m/Y') }}</td>
                     <td>
-                        <a href="{{ route('tasks.edit', [$project->id, $task->id]) }}"><button type="button">Edit</button></a>
+                        <a href="{{ route('tasks.edit', [$project->id, $task->id]) }}">
+                            <button type="button">Edit</button>
+                        </a>
                         <form action="{{ route('tasks.destroy', [$project->id, $task->id]) }}" method="POST" style="display:inline" onsubmit="return confirm('Deletar a tarefa [{{ $task->title }}]?')">
                             @csrf
                             @method('DELETE')

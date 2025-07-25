@@ -3,10 +3,10 @@
 
 @section('content')
 <div class="table-div">
-    <div>
+    <div class="table-title">
         <h2>Projetos</h2>
         @if ($projects->count())
-            <form action="{{ route('projects.create') }}" method="GET">@csrf<button type="submit">Criar Projeto</button></form>            
+            <form action="{{ route('projects.create') }}" method="GET">@csrf<button class="btn-pri" style="margin: 0;" type="submit">Novo Projeto</button></form>            
         @endif
     </div>
     <table>
@@ -17,16 +17,14 @@
             <tr>
                 <td>
                     <a href="{{ route('tasks.index', $project->id) }}">
-                        <div title="{{ $project->description }}">{{ $project->name }}</div>
+                        <div class="td-body-title" title="{{ $project->description }}">{{ $project->name }}</div>
                     </a>
                 </td>
-                <td>
+                <td class="actions">
                     <form action="{{ route('projects.edit', $project->id) }}" method="GET">
                         @csrf
                         <button class="btn-edit" type="submit">Edit</button>
                     </form>
-                </td>
-                <td>
                     <form action="{{ route('projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar o projeto [{{ $project->name }}]?');">@csrf @method('DELETE')
                         <button class="btn-edit red" type="submit">Delete</button>
                     </form>
