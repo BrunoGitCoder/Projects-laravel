@@ -7,7 +7,7 @@
     
 2. Criar .env:
     ```bash
-    cp .env.example .env
+    copy .env.example .env
     ```
     
 3. Editar `.env`:
